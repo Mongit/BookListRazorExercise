@@ -4,6 +4,7 @@
 
 <br/>
 <div class="container row p-0 m-0">
+    
     <div class="col-9">
         <h2 class="text-info">Book List</h2>
     </div>
@@ -57,7 +58,33 @@
             }
         </form>
     </div>
+
+
+    <div class="col-12" style="text-align:center">
+        <br />
+        <span class="h3 text-info">OR</span>
+        <br /><br />
+    </div>
+    <div class="col-12 border p-3">
+
+        <table id="DT_load" class="table table-stripped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th> Author</th>
+                    <th> ISBN</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+
 </div>
+
+@section Scripts {
+    <script src="~/js/bookList.js"></script>
+}
 
 
 
