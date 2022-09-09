@@ -33,7 +33,8 @@ function loadDataTable() {
                                     Edit
                                 </a>
                                 &nbsp;
-                                <a class='btn btn-danger text-white' style='cursor:pointer: width:100px;'>
+                                <a class='btn btn-danger text-white' style='cursor:pointer: width:100px;'
+                                    onclick=Delete('/api/book?id='+${data})>
                                     Delete
                                 </a>
                             </div>
@@ -47,5 +48,31 @@ function loadDataTable() {
             "empyTable": "No data found."//if empty table display
         },
         "width":"70%"
+    });
+}
+
+function Delete(url) {
+    swal({ //sweet alert
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {//willDelete will be the response of the alert, based on this, we'll apply the lambda function
+        if (willDelete) { //if the users selected yes on the alert = want to delete the book
+            $.ajax({
+                type: "DELETE",
+                url: url, //is declared as param in Delete(url)
+                success: function (data) { //respose from controller
+                    if (data.success) {
+                        toastr.success(data.message); //property of controller json response, has success and message properties. This names must be the same
+                        dataTable.ajax.reload();
+                    }
+                    else {
+                        toastr.error(data.message);
+                    }
+                }
+            });
+        }
     });
 }
